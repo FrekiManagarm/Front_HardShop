@@ -1,6 +1,8 @@
 import { Case } from "@/types"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
+import Image from "next/image"
+import Card from "@/components/Cards/Card"
 
 export const metadata : Metadata = {
     title: "Hardaware | Boitiers",
@@ -8,8 +10,9 @@ export const metadata : Metadata = {
 }
 
 async function getCases() : Promise<Case[]> {
-    const res = await fetch('/api/case', {
-        cache: "no-cache"
+    const res = await fetch(`http://localhost:3000/api/case`, {
+        cache: "no-cache",
+        method: "GET"
     })
 
     if (res.status == 404) {
@@ -19,8 +22,18 @@ async function getCases() : Promise<Case[]> {
     return res.json()
 }
 
-export default function CaseList() {
+export default async function CaseList() {
+
+  const cases: Case[] = await getCases()
+
   return (
-    <div>CaseList</div>
+    <div>
+      <h1>Case List</h1>
+      <div>
+        {cases.map((boitier) => (
+          <Card image={boitier.image} description={boitier.description} name={boitier.nom} link={`/case/${boitier.id}`} />
+        ))}
+      </div>
+    </div>
   )
 }
