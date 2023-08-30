@@ -8,6 +8,9 @@ export async function GET(request: Request, { params }: { params: { id: number }
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
+        },
+        next: {
+            revalidate: 0
         }
     });
 
@@ -18,9 +21,9 @@ export async function GET(request: Request, { params }: { params: { id: number }
     })
 }
 
-export async function PUT(request: Request) {
-    const { searchParams } = new URL(request.url)
-    const id = searchParams.get('id')
+export async function PUT(request: Request, { params }: {params: {id: number}}) {
+    const id = params.id
+
     const res = await fetch(`${process.env.API_URL}/api/Boitiers/${id}`, {
         method: "PUT",
         headers: {
@@ -37,9 +40,8 @@ export async function PUT(request: Request) {
     })
 }
 
-export async function DELETE(request: Request) {
-    const { searchParams } = new URL(request.url)
-    const id = searchParams.get('id')
+export async function DELETE(request: Request, { params } : { params : { id : number }}) {
+    const id = params.id
     
     const res = await fetch(`${process.env.API_URL}/api/Boitiers/${id}`, {
         method: "DELETE",

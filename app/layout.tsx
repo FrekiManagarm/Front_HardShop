@@ -2,6 +2,7 @@ import { Navbar } from '@/components'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
+import StyledComponentsRegistry from './style-registry'
 
 const inter = Roboto({ weight: '300', subsets: ['greek'] })
 
@@ -18,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        {children}
+        <StyledComponentsRegistry>
+          <Navbar />
+          {children}
+        </StyledComponentsRegistry>
       </body>
     </html>
   )

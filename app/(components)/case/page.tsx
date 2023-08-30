@@ -2,7 +2,7 @@ import { Case } from "@/types"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Image from "next/image"
-import Card from "@/components/Cards/Card"
+import Card from "@/components/Card/Card"
 
 export const metadata : Metadata = {
     title: "Hardaware | Boitiers",
@@ -29,11 +29,9 @@ export default async function CaseList() {
   return (
     <div>
       <h1>Case List</h1>
-      <div>
-        {cases.map((boitier) => (
-          <Card image={boitier.image} description={boitier.description} name={boitier.nom} link={`/case/${boitier.id}`} />
-        ))}
-      </div>
+      {cases.map((boitier) => (
+        <Card key={boitier.id} image={boitier.image} description={boitier.description} name={boitier.nom} link={`/case/${boitier.id}`} />
+      ))}
     </div>
   )
 }

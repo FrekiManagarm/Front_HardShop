@@ -1,3 +1,4 @@
+import Card from "@/components/Card/Card"
 import { CPU } from "@/types"
 import Image from "next/image"
 
@@ -23,10 +24,7 @@ export default async function CPUList() {
         <div className="w-full text-center">
             <h1 className="text-[32px]">CPUList</h1>
             {cpus.map((cpu) => (
-                <div className="flex flex-row shadow-lg p-5">
-                    <Image src={cpu.image} alt="cpu image" width={150} height={150} />
-                    <h3>{cpu.nom}</h3>
-                </div>
+                <Card key={cpu.id} name={cpu.nom} description={cpu.description} image={cpu.image} link={`/cpu/${cpu.id}`} />
             ))}
         </div>
     )

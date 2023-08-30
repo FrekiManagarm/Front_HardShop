@@ -7,12 +7,16 @@ export async function GET() {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
+        },
+        next: {
+            revalidate: 0
         }
     })
 
-    const data : CPU = await res.json()
+    const data : CPU[] = await res.json()
 
     return NextResponse.json(data, {
+
         status: 200
     })
 }

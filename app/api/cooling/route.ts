@@ -7,6 +7,9 @@ export async function GET() {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
+        },
+        next: {
+            revalidate: 0
         }
     })
 

@@ -1,9 +1,8 @@
 import { CPU } from "@/types"
 import { NextResponse } from "next/server"
 
-export async function GET(request: Request) {
-    const { searchParams } = new URL(request.url)
-    const id = searchParams.get('id')
+export async function GET(request: Request, { params }: {params: {id: number}}) {
+    const id = params.id
 
     const res = await fetch(`${process.env.API_URL}/api/CPU/${id}`, {
         method: "GET",
@@ -11,6 +10,9 @@ export async function GET(request: Request) {
             "Accept": "application/json",
             "Content-Type": "application/json",
         },
+        next: {
+            revalidate: 0
+        }
     })
 
     const data : CPU = await res.json()
@@ -20,9 +22,8 @@ export async function GET(request: Request) {
     })
 }
 
-export async function PUT(request: Request) {
-    const { searchParams } = new URL(request.url)
-    const id = searchParams.get('id')
+export async function PUT(request: Request, { params }: {params: {id: number}}) {
+    const id = params.id
 
     const res = await fetch(`${process.env.API_URL}/api/CPU/${id}`, {
         method: "PUT",
@@ -39,9 +40,8 @@ export async function PUT(request: Request) {
     })
 }
 
-export async function DELETE(request: Request) {
-    const { searchParams } = new URL(request.url)
-    const id = searchParams.get('id')
+export async function DELETE(request: Request, { params }: { params: {id: number} }) {
+    const id = params.id
 
     const res = await fetch(`${process.env.API_URL}/api/Cooling/${id}`, {
         method: "DELETE",
