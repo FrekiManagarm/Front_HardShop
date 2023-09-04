@@ -1,9 +1,26 @@
+'use client'
+import MainMenu from '@/components/ui/MainMenu'
+import { Flex } from '@chakra-ui/react'
 import Image from 'next/image'
 
 export default function Home() {
+
+  const pageInfos = [
+    {
+      id: 0 
+    },
+  ]
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Home Page
-    </main>
+    <Flex
+      w={'99vw'}
+      h={'100vh'}
+      justifyContent={'flex-start'}
+      alignItems={'center'}
+      flexDirection={'column'}
+    >
+      <MainMenu />
+
+    </Flex>
   )
 }

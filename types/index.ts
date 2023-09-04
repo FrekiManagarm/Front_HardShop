@@ -10,4 +10,11 @@ import SSD from "./SSD";
 import User from "./User";
 import PSU from "./PSU";
 
-export type { MotherBoard, CPU, GPU, RAM, HDD, Cooling, Case, Config, SSD, User, PSU }
+interface PageInfosProps {
+    id: number,
+    title: string,
+    link: string,
+    subtitle: string
+}
+
+export type { MotherBoard, CPU, GPU, RAM, HDD, Cooling, Case, Config, SSD, User, PSU, PageInfosProps }

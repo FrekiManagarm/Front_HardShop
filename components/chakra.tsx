@@ -1,0 +1,179 @@
+'use client'
+import { 
+    ChakraProvider, 
+    Checkbox, 
+    extendTheme, 
+    ColorModeScript, 
+    useColorMode, 
+    ColorModeScriptProps
+} from "@chakra-ui/react"
+import React, { useCallback } from 'react';
+import '../components/gotham.css'
+import { colors } from "./ui/color";
+import { CacheProvider } from "@chakra-ui/next-js";
+
+const config : ColorModeScriptProps = {
+    initialColorMode: "light",
+}
+
+const theme = extendTheme({
+    config,
+    fonts: {
+      heading: 'Gotham Book, sans-serif',
+      body: 'Gotham Medium, sans-serif',
+    },
+    components: {
+      Text: {
+        variants: {
+          linkText: {
+            fontSize: '14px',
+            fontWeight: '200',
+            textDecoration: 'underline',
+            fontFamily: 'Gotham Book',
+            textUnderlineOffset: '3px',
+          },
+          nolinkText: {
+            fontSize: '14px',
+            fontWeight: '200',
+            fontFamily: 'Gotham Book',
+          },
+          linkNoText: {
+            fontSize: '17px',
+            fontWeight: '200',
+            textDecoration: 'none',
+            fontFamily: 'Gotham Medium',
+          },
+          menuLink: {
+            fontSize: '14px',
+            lineHeight: '14px',
+            fontFamily: 'Gotham Medium',
+          },
+          tinyFont: {
+            fontSize: '13px',
+            fontFamily: 'Gotham Light',
+            lineHeight: '14px',
+          },
+          mediumFont: {
+            fontSize: '24px',
+            lineHeight: '18px',
+            fontWeight: '900',
+            fontFamily: 'Gotham Book',
+          },
+          smallFont: {
+            fontSize: '14px',
+            lineHeight: '14px',
+            fontWeight: '900',
+            fontFamily: 'Gotham Book',
+          },
+          lightSubtile: {
+            fontSize: '14px',
+            lineHeight: '14px',
+            fontWeight: '500',
+            fontFamily: 'Gotham Book',
+          },
+          basicmedium: {
+            fontSize: '14px',
+            lineHeight: '20px',
+            fontWeight: '600',
+            fontFamily: 'Gotham Book',
+          },
+        },
+      },
+      Heading: {
+        variants: {
+          headModel: {fontSize: '40px', lineHeight: '60px'},
+          headModelsub: {fontSize: '28px', lineHeight: '25px'},
+          basicmedium: {
+            fontSize: '14px',
+            lineHeight: '17px',
+            fontWeight: '900',
+            fontFamily: 'Gotham Medium',
+          },
+          smallbasicmedium: {
+            fontSize: '18px',
+            lineHeight: '22px',
+            fontWeight: '400',
+            fontFamily: 'Gotham Medium',
+          },
+        },
+      },
+      Button: {
+        variants: {
+          BtnLlink: {
+            bg: colors.btn1,
+            color: 'white',
+            borderRadius: 5,
+            w: {base: 'full', md: '350px'},
+            fontSize: '14px',
+            fontWeight: 'normal',
+          },
+          BtnRlink: {
+            color: colors.btn1,
+            bg: 'white',
+            borderRadius: 5,
+            w: {base: 'full', md: '350px'},
+            fontSize: '14px',
+            fontWeight: 'normal',
+          },
+          btnSmall: {
+            color: colors.btn1,
+            bg: '#00000010',
+            borderRadius: 5,
+            w: {base: 'full', md: '50%'},
+            fontSize: '12px',
+            fontWeight: 'normal',
+          },
+          btnCommand: {
+            bg: 'transparent',
+            border: '3px solid white',
+            color: 'white',
+            borderRadius: '3px',
+            fontSize: '14px',
+            lineHeight: '14px',
+            fontWeight: '400',
+            fontFamily: 'Gotham Medium',
+            px: '50px',
+            _hover: {bg: 'white', color: 'black'},
+          },
+          btnCommandligth: {
+            bg: 'transparent',
+            border: '3px solid black',
+            color: 'black',
+            borderRadius: '3px',
+            fontSize: '14px',
+            lineHeight: '14px',
+            fontWeight: '400',
+            fontFamily: 'Gotham Medium',
+            px: '50px',
+            _hover: {bg: 'black', color: 'white'},
+          },
+        },
+      },
+    },
+  })
+
+export function ToggleThemeCheckbox() {
+    const { colorMode, toggleColorMode } = useColorMode()
+    const isDark = colorMode === "dark"
+
+    const handleChange = useCallback(() => {
+        toggleColorMode()
+    }, [toggleColorMode])
+
+    return (
+        <Checkbox isChecked={isDark} onChange={handleChange}>
+            Dark Mode
+        </Checkbox>
+    )
+}
+
+export default function Chakra({children}: {children: React.ReactNode}) {
+    return (
+        <CacheProvider>
+            <ChakraProvider theme={theme}>
+                <ColorModeScript initialColorMode={config.initialColorMode} />
+                {children}
+            </ChakraProvider>
+        </CacheProvider>
+    )
+}
