@@ -13,8 +13,15 @@ import PSU from "./PSU";
 interface PageInfosProps {
     id: number,
     title: string,
-    link: string,
-    subtitle: string
+    image: string,
+    subtitle: string,
+    subtitleLink: string,
+    btnL: string,
+    btnLlink: string,
+    btnR: string,
+    btnRLink: string,
+    lastSubtitle: string,
+    lastSubtitleLink: string
 }
 
 export type { MotherBoard, CPU, GPU, RAM, HDD, Cooling, Case, Config, SSD, User, PSU, PageInfosProps }

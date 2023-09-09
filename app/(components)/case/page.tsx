@@ -3,6 +3,8 @@ import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Card from "@/components/Card/Card"
+import { Navbar } from "@/components"
+import CasePage from "@/container/CasePage/CasePage"
 
 export const metadata : Metadata = {
     title: "Hardaware | Boitiers",
@@ -10,7 +12,7 @@ export const metadata : Metadata = {
 }
 
 async function getCases() : Promise<Case[]> {
-    const res = await fetch(`http://localhost:3000/api/case`, {
+    const res = await fetch(`${process.env.LOCAL_API_URL}/api/case`, {
         cache: "no-cache",
         method: "GET"
     })
@@ -27,11 +29,8 @@ export default async function CaseList() {
   const cases: Case[] = await getCases()
 
   return (
-    <div>
-      <h1>Case List</h1>
-      {cases.map((boitier) => (
-        <Card key={boitier.id} image={boitier.image} description={boitier.description} name={boitier.nom} link={`/case/${boitier.id}`} />
-      ))}
-    </div>
+    <>
+      <CasePage cases={cases} />
+    </>
   )
 }

@@ -1,6 +1,6 @@
 export default interface SSD {
     id: number
-    image: string | null
+    image: string
     capacité: number
     connectique: string
     format: string

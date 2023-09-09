@@ -10,9 +10,13 @@ export async function GET(request: Request, {params}: {params: {id: number}}) {
         headers: {
             "Accept": "application/json"
         },
-        next: {
-            revalidate: 0
-        }
+        cache: "no-cache",
+    })
+
+    const data : HDD = await res.json()
+
+    return NextResponse.json(data, {
+        status: 200
     })
 }
 

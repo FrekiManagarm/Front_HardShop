@@ -1,6 +1,6 @@
 export default interface RAM {
     id: number
-    image: string | null
+    image: string
     capacité: string
     interface: string
     latence: string

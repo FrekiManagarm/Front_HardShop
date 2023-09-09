@@ -1,6 +1,7 @@
 import Chakra from '@/components/chakra'
 import './globals.css'
 import type { Metadata } from 'next'
+import { Navbar } from '@/components'
 
 export const metadata: Metadata = {
   title: 'Hardaware',
@@ -16,6 +17,7 @@ export default function RootLayout({
     <html lang="fr">
       <body>
         <Chakra>
+          <Navbar />
           {children}
         </Chakra>
       </body>

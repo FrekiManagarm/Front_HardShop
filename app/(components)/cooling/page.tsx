@@ -1,3 +1,5 @@
+import { Navbar } from "@/components"
+import CoolingPage from "@/container/CoolingPage/CoolingPage"
 import { Cooling } from "@/types"
 import { Metadata } from "next"
 import { notFound } from 'next/navigation'
@@ -7,8 +9,8 @@ export const metadata : Metadata = {
     description: "Vous trouverez ici la liste de tout les refroidissements"
 }
 
-async function getCoolings() : Promise<Cooling[]> {
-    const res = await fetch('/api/cooling', {
+async function getCoolings() {
+    const res = await fetch(`${process.env.LOCAL_API_URL}/api/cooling`, {
         cache: "no-cache"
     })
 
@@ -24,8 +26,8 @@ export default async function CoolingList() {
     const coolings : Cooling[] = await getCoolings();
 
   return (
-    <div>
-        CoolingList
-    </div>
+    <>
+        <CoolingPage coolings={coolings} />
+    </>
   )
 }

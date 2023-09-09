@@ -1,3 +1,5 @@
+import { Navbar } from "@/components";
+import CaseDetailsPage from "@/container/CasePage/CaseDetailsPage";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -13,9 +15,7 @@ async function getCase(id: number) {
       headers: {
         "Accept": "application/json",
       },
-      next: {
-        revalidate: 0
-      }
+      cache: "no-cache"
     })
 
     return await res.json()
@@ -29,10 +29,8 @@ export default async function CaseDetails({ params }: {params: any}) {
   const boitier = await getCase(params.id)
 
   return (
-    <div>
-        <h1>Case Details</h1>
-        <h2>{boitier.nom}</h2>
-        <Image src={boitier.image} alt="boitier image" />
-    </div>
+    <>
+      <CaseDetailsPage boitier={boitier} />
+    </>
   )
 }

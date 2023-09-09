@@ -12,23 +12,24 @@ import {
     Text,
     useDisclosure,
     PositionProps,
-    VStack
+    VStack,
+    Button
 } from '@chakra-ui/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { ReactElement, useEffect, useRef } from 'react'
 import './Mainmenu.css'
 
-export default function MainMenu(position1: ResponsiveValue<any> = "fixed", position2: ResponsiveValue<any> = 'fixed') {
+export default function MainMenu({position1  = "fixed", position2 = 'fixed'}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const overlayRef: React.MutableRefObject<any> = useRef(null)
-    const elementsRef: React.MutableRefObject<any[]> = useRef([])
+    const overlayRef = useRef(null)
+    const elementsRef = useRef([])
 
     useEffect(() => {
-        const elements: any[] = elementsRef.current
+        const elements = elementsRef.current
         const overlay = overlayRef.current
 
-        const handleMouseEnter = (e: React.FocusEvent) => {
+        const handleMouseEnter = (e) => {
             const rect = e.target.getBoundingClientRect()
             overlay.style.opacity = "1"
             overlay.style.width = `${rect.width + 30}px`
@@ -57,7 +58,7 @@ export default function MainMenu(position1: ResponsiveValue<any> = "fixed", posi
         }
     }, [])
 
-    let timeout: any
+    let timeout
 
     return (
         <>
@@ -91,67 +92,6 @@ export default function MainMenu(position1: ResponsiveValue<any> = "fixed", posi
         </Flex>
         <Flex
           gap={8}
-          justifyContent={'center'}
-          w={'50%'}
-          display={{base: 'none', xl: 'flex'}}
-        >
-          <Link href={'/models'}>
-            <Text
-              variant={'menuLink'}
-              className="hoveredLink"
-              ref={el => elementsRef.current.push(el)}
-            >
-              Model S
-            </Text>
-          </Link>
-          <Link href={'/model3'}>
-            <Text
-              className="hoveredLink"
-              variant={'menuLink'}
-              ref={el => elementsRef.current.push(el)}
-            >
-              Model 3
-            </Text>
-          </Link>
-          <Link href={'/modelx'}>
-            <Text
-              className="hoveredLink"
-              variant={'menuLink'}
-              ref={el => elementsRef.current.push(el)}
-            >
-              Model X
-            </Text>
-          </Link>
-          <Link href={'/modely'}>
-            <Text
-              className="hoveredLink"
-              variant={'menuLink'}
-              ref={el => elementsRef.current.push(el)}
-            >
-              Model Y
-            </Text>
-          </Link>
-          <Link href={'/configurateur'}>
-            <Text
-              className="hoveredLink"
-              variant={'menuLink'}
-              ref={el => elementsRef.current.push(el)}
-            >
-              Powerwall
-            </Text>
-          </Link>
-          <Link href={'/configurateur'}>
-            <Text
-              className="hoveredLink"
-              variant={'menuLink'}
-              ref={el => elementsRef.current.push(el)}
-            >
-              Recharge
-            </Text>
-          </Link>
-        </Flex>
-        <Flex
-          gap={8}
           justifyContent={'flex-end'}
           w={'25%'}
           display={{base: 'none', xl: 'flex'}}
@@ -165,13 +105,13 @@ export default function MainMenu(position1: ResponsiveValue<any> = "fixed", posi
               Assistance
             </Text>
           </Link>
-          <Link href={'/configurateur'}>
+          <Link href={'/configurator'}>
             <Text
               className="hoveredLink"
               variant={'menuLink'}
               ref={el => elementsRef.current.push(el)}
             >
-              Shop
+              Configurateur
             </Text>
           </Link>
           <Link href={'/configurateur'}>
@@ -180,10 +120,10 @@ export default function MainMenu(position1: ResponsiveValue<any> = "fixed", posi
               variant={'menuLink'}
               ref={el => elementsRef.current.push(el)}
             >
-              Compte
+              Connexion
             </Text>
           </Link>
-          <Text variant={'menuLink'} onClick={onOpen} cursor="pointer">
+          <Text variant={'menuLink'} className='hoveredLink' onClick={onOpen} cursor="pointer" ref={el => elementsRef.current.push(el)}>
             Menu
           </Text>
         </Flex>
@@ -209,34 +149,56 @@ export default function MainMenu(position1: ResponsiveValue<any> = "fixed", posi
                 justifyContent={'flex-end'}
                 pr={5}
               >
-                <CloseIcon />
+                <Button onClick={onClose}>
+                  <CloseIcon />
+                </Button>
               </Flex>
               <DrawerBody>
                 <VStack spacing={7} align="start" px={5}>
                   {[
-                    'Véhicules disponibles',
-                    "Véhicules D'occasion",
-                    'Reprise',
-                    'Essais',
-                    'Véhicules de société',
-                    'Cybertruck',
-                    'Roadster',
-                    'Électricité',
-                    'Électricité pour les professionnels',
-                    'Industries',
-                    'Énergie',
-                    'Nous trouver',
-                    'Événements',
-                    'Assistance',
-                    'Relations investisseurs',
+                    {
+                      title: 'Processeur',
+                      url: "/cpu"
+                    },
+                    {
+                      title: "Carte Graphique",
+                      url: "/gpu"
+                    },
+                    {
+                      title: "Carte Mère",
+                      url: "/motherboard"
+                    },
+                    {
+                      title: "Boitier",
+                      url: "/case"
+                    },
+                    {
+                      title: "Mémoire Vive",
+                      url: "/ram",
+                    },
+                    {
+                      title: "Alimentation",
+                      url: "/psu"
+                    },
+                    {
+                      title: "Refroidissement",
+                      url: "/cooling"
+                    },
+                    {
+                      title: "Disque SSD",
+                      url: "/ssd",
+                    },
+                    {
+                      title: ""
+                    }
                   ].map(item => (
-                    <Link key={item} href="/#">
+                    <Link key={item.url} href="/#">
                       <Text
                         className="hoveredLink"
                         variant={'menuLink'}
                         ref={el => elementsRef.current.push(el)}
                       >
-                        {item}
+                        {item.title}
                       </Text>
                     </Link>
                   ))}

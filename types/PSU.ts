@@ -1,6 +1,6 @@
 export default interface PSU {
     id: number
-    image: string | null
+    image: string
     certif: string | null
     format: string
     description: string | null
