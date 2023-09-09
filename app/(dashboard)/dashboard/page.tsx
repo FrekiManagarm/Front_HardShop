@@ -1,5 +1,7 @@
-export default function page() {
+export default function DashboardHomePage() {
   return (
-    <div>page</div>
+    <>
+      
+    </>
   )
 }

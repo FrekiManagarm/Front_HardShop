@@ -1,4 +1,4 @@
-export default function RAMStep() {
+export default function ResumePage() {
   return (
     <>
         
