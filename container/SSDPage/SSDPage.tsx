@@ -1,3 +1,4 @@
+"use client"
 import { Card } from "@/components";
 import { SSD } from "@/types";
 import { SimpleGrid } from "@chakra-ui/react";
