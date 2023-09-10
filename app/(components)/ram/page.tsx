@@ -7,7 +7,7 @@ async function getRAMs() {
         cache: "no-store"
     })
 
-    return res.json()
+    return await res.json()
 }
 
 export default async function RAMList() {

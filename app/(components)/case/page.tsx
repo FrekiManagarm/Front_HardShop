@@ -11,7 +11,7 @@ export const metadata : Metadata = {
     description: "Vous trouverez ici la liste de tout les boitiers"
 }
 
-async function getCases() : Promise<Case[]> {
+async function getCases() {
     const res = await fetch(`${process.env.LOCAL_API_URL}/api/case`, {
         cache: "no-store",
         method: "GET"
@@ -21,7 +21,7 @@ async function getCases() : Promise<Case[]> {
         notFound()
     }
 
-    return res.json()
+    return await res.json()
 }
 
 export default async function CaseList() {

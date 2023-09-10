@@ -5,9 +5,10 @@ import { HDD } from "@/types";
 async function getHDDs() {
     const res = await fetch(`${process.env.LOCAL_API_URL}/api/hdd`, {
         cache: "no-store",
+        method: "GET"
     })
 
-    return res.json()
+    return await res.json()
 }
 
 export default async function HDDList() {
