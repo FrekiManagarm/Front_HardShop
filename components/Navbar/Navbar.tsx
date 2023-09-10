@@ -12,7 +12,7 @@ export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure()
   const pathname = usePathname()
 
-  console.log(pathname.includes('/cooling'), 'pathname')
+  console.log(process.env.LOCAL_API_URL, 'LOCAL_API_URL')
 
   return ( !pathname.includes('/dashboard') ?
     <Box>
