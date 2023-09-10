@@ -2,19 +2,26 @@ import { Cooling } from "@/types"
 import { NextResponse } from "next/server"
 
 export async function GET() {
-    const res = await fetch(`${process.env.API_URL}/api/Coolings`, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-        },
-    })
+    try {
+        const res = await fetch(`${process.env.API_URL}/api/Coolings`, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+        })
 
-    const data : Cooling[] = await res.json()
+        const data : Cooling[] = await res.json()
 
-    return NextResponse.json(data, {
-        status: 200
-    })
+        return NextResponse.json(data, {
+            status: 200
+        })
+    } catch (error) {
+        return NextResponse.json({
+            message: 'Error when fetching cooling',
+            error: error
+        })
+    }
 }
 
 export async function POST(request: Request) {

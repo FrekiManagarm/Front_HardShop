@@ -5,18 +5,25 @@ import { NextResponse } from "next/server"
 export async function GET(request: Request, {params}: {params: {id: number}}) {
     const id = params.id
 
-    const res = await fetch(`${process.env.API_URL}/api/HDD/${id}`, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json"
-        },
-    })
+    try {
+        const res = await fetch(`${process.env.API_URL}/api/HDD/${id}`, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            },
+        })
 
-    const data : HDD = await res.json()
+        const data : HDD = await res.json()
 
-    return NextResponse.json(data, {
-        status: 200
-    })
+        return NextResponse.json(data, {
+            status: 200
+        })
+    } catch (error) {
+        return NextResponse.json({
+            message: "Error when fetching HDD",
+            error: error
+        })
+    }
 }
 
 export async function PUT(request: Request, { params }: {params: {id: number}}) {

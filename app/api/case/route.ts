@@ -3,19 +3,26 @@ import { NextResponse } from "next/server";
 import { cookies } from 'next/headers';
 
 export async function GET(request: Request) {
-    const res = await fetch(`${process.env.API_URL}/api/Boitiers`, {
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        method: "GET",
-    });
+    try {
+        const res = await fetch(`${process.env.API_URL}/api/Boitiers`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            method: "GET",
+        });
 
-    const data: Case[] = await res.json()
+        const data: Case[] = await res.json()
 
-    return NextResponse.json(data, {
-        status: 200
-    })
+        return NextResponse.json(data, {
+            status: 200
+        })
+    } catch (error) {
+        return NextResponse.json({
+            message: "Error when fetching Case",
+            error: error
+        })
+    }
 }
 
 export async function POST(request: Request) {

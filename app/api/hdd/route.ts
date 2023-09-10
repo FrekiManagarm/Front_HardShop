@@ -3,18 +3,25 @@ import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
 
 export async function GET() {
-    const res = await fetch(`${process.env.API_URL}/api/HDDs`, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json"
-        },
-    })
+    try {
+        const res = await fetch(`${process.env.API_URL}/api/HDDs`, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            },
+        })
 
-    const data : HDD[] = await res.json()
+        const data : HDD[] = await res.json()
 
-    return NextResponse.json(data, {
-        status: 200
-    })
+        return NextResponse.json(data, {
+            status: 200
+        })
+    } catch (error) {
+        return NextResponse.json({
+            message: "Error when fetching HDD",
+            error: error
+        })
+    }
 }
 
 export async function POST(request: Request) {
