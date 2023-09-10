@@ -12,8 +12,6 @@ export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure()
   const pathname = usePathname()
 
-  console.log(process.env.API_URL, 'API_URL')
-
   return ( !pathname.includes('/dashboard') ?
     <Box>
       <Flex

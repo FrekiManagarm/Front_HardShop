@@ -24,7 +24,9 @@ async function getCases() {
         notFound()
     }
 
-    return await res.json()
+    const data : Case[] = await res.json()
+
+    return data
 }
 
 export default async function CaseList() {
