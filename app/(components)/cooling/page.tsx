@@ -10,6 +10,7 @@ export const metadata : Metadata = {
 }
 
 async function getCoolings() {
+    try {
         const res = await fetch(`${process.env.LOCAL_API_URL}/api/cooling`, {
             cache: "no-store",
             method: "GET",
@@ -23,6 +24,9 @@ async function getCoolings() {
         }
 
         return await res.json()
+    } catch (error) {
+        return new Error(`${error}`)
+    }
 
 }
 
