@@ -10,7 +10,6 @@ export async function GET(request: Request, {params}: {params: {id: number}}) {
         headers: {
             "Accept": "application/json"
         },
-        cache: "no-store",
     })
 
     const data : HDD = await res.json()

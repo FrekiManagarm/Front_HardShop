@@ -8,9 +8,6 @@ export async function GET() {
         headers: {
             "Accept": "application/json"
         },
-        next: {
-            revalidate: 0
-        }
     })
 
     const data : HDD[] = await res.json()

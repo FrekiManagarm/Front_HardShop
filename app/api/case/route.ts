@@ -9,9 +9,6 @@ export async function GET(request: Request) {
             "Accept": "application/json"
         },
         method: "GET",
-        next: {
-            revalidate: 0
-        }
     });
 
     const data: Case[] = await res.json()

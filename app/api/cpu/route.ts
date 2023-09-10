@@ -8,9 +8,6 @@ export async function GET() {
             "Accept": "application/json",
             "Content-Type": "application/json",
         },
-        next: {
-            revalidate: 0
-        }
     })
 
     const data : CPU[] = await res.json()

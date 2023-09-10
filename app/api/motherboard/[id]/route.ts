@@ -10,9 +10,6 @@ export async function GET(request: Request, { params }: {params: {id: number}}) 
         headers: {
             "Accept": "application/json",
         },
-        next: {
-            revalidate: 0
-        }
     })
 
     const data : MotherBoard = await res.json()
