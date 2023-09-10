@@ -12,7 +12,8 @@ const nextConfig = {
         ]
     },
     env: {
-        API_URL: process.env.API_URL
+        API_URL: process.env.API_URL,
+        LOCAL_API_URL: process.env.IS_PROD ? process.env.PROD_LOCAL_URL : process.env.LOCAL_API_URL
     },
     swcMinify: true,
     images: {
