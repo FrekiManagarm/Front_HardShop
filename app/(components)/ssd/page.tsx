@@ -4,7 +4,7 @@ import { SSD } from "@/types"
 async function getSSDs() {
     const res = await fetch(`${process.env.LOCAL_API_URL}/api/ram`, {
         method: "GET",
-        cache: ""
+        cache: "no-store"
     })
 
     return res.json()
