@@ -4,7 +4,7 @@ import { MotherBoard } from "@/types"
 async function getMotherboard(id: number) {
     const res = await fetch(`${process.env.LOCAL_API_URL}/api/motherboard/${id}`, {
         method: "GET",
-        cache: "no-cache",
+        cache: "no-store",
     })
 
     return res.json()

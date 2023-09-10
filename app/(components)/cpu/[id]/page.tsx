@@ -5,7 +5,7 @@ import Image from "next/image"
 
 async function getCPU(id: number) {
     const res = await fetch(`${process.env.LOCAL_API_URL}/api/cpu/${id}`, {
-        cache: "no-cache"
+        cache: "no-store"
     })
 
     return res.json()

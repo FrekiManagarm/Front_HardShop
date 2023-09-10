@@ -15,7 +15,7 @@ async function getCase(id: number) {
       headers: {
         "Accept": "application/json",
       },
-      cache: "no-cache"
+      cache: "no-store"
     })
 
     return await res.json()

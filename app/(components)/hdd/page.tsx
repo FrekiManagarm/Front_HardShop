@@ -4,7 +4,7 @@ import { HDD } from "@/types";
 
 async function getHDDs() {
     const res = await fetch(`${process.env.LOCAL_API_URL}/api/hdd`, {
-        cache: "no-cache",
+        cache: "no-store",
     })
 
     return res.json()

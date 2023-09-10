@@ -4,7 +4,7 @@ import { RAM } from "@/types"
 async function getRAM(id: number) {
     const res = await fetch(`${process.env.LOCAL_API_URL}/api/ram/${id}`, {
         method: "GET",
-        cache: "no-cache",
+        cache: "no-store",
     })
 
     return res.json()

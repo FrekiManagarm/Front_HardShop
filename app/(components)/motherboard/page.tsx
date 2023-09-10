@@ -6,7 +6,7 @@ import MotherboardPage from "@/container/MotherboardPage/MotherboardPage"
 async function getMotherboards() {
     const res = await fetch(`${process.env.LOCAL_API_URL}/api/motherboard`, {
         method: "GET",
-        cache: "no-cache",
+        cache: "no-store",
     })
 
     return res.json()

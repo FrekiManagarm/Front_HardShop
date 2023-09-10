@@ -4,7 +4,7 @@ import { Cooling } from "@/types";
 
 async function getCooling(id: number) {
     const res = await fetch(`${process.env.LOCAL_API_URL}/api/cooling/${id}`, {
-        cache: "no-cache"
+        cache: "no-store"
     })
 
     return res.json()

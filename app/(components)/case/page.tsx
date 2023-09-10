@@ -13,7 +13,7 @@ export const metadata : Metadata = {
 
 async function getCases() : Promise<Case[]> {
     const res = await fetch(`${process.env.LOCAL_API_URL}/api/case`, {
-        cache: "no-cache",
+        cache: "no-store",
         method: "GET"
     })
 

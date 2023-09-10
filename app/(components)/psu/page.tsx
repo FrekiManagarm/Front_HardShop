@@ -4,7 +4,7 @@ import { PSU } from "@/types"
 async function getPSUs() {
     const res = await fetch(`${process.env.LOCAL_API_URL}/api/psu`, {
         method: "GET",
-        cache: "no-cache"
+        cache: "no-store"
     })
 
     return res.json()

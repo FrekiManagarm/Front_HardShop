@@ -8,7 +8,7 @@ async function getCPUs() {
         headers: {
             "Accept": "application/json",
         },
-        cache: "no-cache"
+        cache: "no-store"
     })
 
     return res.json()
