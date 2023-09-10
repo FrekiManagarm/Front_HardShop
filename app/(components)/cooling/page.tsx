@@ -10,15 +10,20 @@ export const metadata : Metadata = {
 }
 
 async function getCoolings() {
-    const res = await fetch(`${process.env.LOCAL_API_URL}/api/cooling`, {
-        cache: "no-store"
-    })
+    try {
+        const res = await fetch(`${process.env.LOCAL_API_URL}/api/cooling`, {
+            cache: "no-store"
+        })
 
-    if (res.status == 404) {
-        notFound()
+        if (res.status == 404) {
+            notFound()
+        }
+
+        return await res.json()
+    } catch (error) {
+        
     }
 
-    return await res.json()
 }
 
 export default async function CoolingList() {

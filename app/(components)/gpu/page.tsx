@@ -2,6 +2,7 @@ import { Navbar } from "@/components";
 import CPUPage from "@/container/CPUPage/CPUPage";
 import GPUPage from "@/container/GPUPage/GPUPage";
 import { GPU } from "@/types";
+import { notFound } from "next/navigation";
 
 async function getGPUs() {
     const res = await fetch(`${process.env.LOCAL_API_URL}/api/gpu`, {
@@ -9,10 +10,12 @@ async function getGPUs() {
         headers: {
             "Accept": "application/json",
         },
-        next: {
-            revalidate: 0
-        }
+        cache: "no-store"
     })
+
+    if (res.status == 404) {
+        notFound()
+    }
 
     return await res.json()
 }
