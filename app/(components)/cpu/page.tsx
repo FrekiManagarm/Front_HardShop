@@ -16,7 +16,7 @@ async function getCPUs() {
         notFound()
     }
 
-    console.log(res, 'res from route handlers')
+    console.log(res.json(), 'res from route handlers')
 
     return await res.json()
 }
