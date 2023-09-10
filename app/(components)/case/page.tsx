@@ -12,7 +12,7 @@ export const metadata : Metadata = {
 }
 
 async function getCases() {
-    const res = await fetch(`${process.env.API_URL}/api/Boitiers`, {
+    const res = await fetch(`${process.env.LOCAL_API_URL}/api/case`, {
         cache: "no-store",
         method: "GET",
         headers: {

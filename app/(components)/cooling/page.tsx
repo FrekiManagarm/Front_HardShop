@@ -12,7 +12,11 @@ export const metadata : Metadata = {
 async function getCoolings() {
     try {
         const res = await fetch(`${process.env.LOCAL_API_URL}/api/cooling`, {
-            cache: "no-store"
+            cache: "no-store",
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
         })
 
         if (res.status == 404) {
