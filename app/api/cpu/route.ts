@@ -10,6 +10,8 @@ export async function GET() {
         },
     })
 
+    console.log(res, 'res from api')
+
     const data : CPU[] = await res.json()
 
     return NextResponse.json(data, {

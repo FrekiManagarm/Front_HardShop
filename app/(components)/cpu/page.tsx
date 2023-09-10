@@ -11,8 +11,6 @@ async function getCPUs() {
         cache: "no-store"
     })
 
-    console.log(res, "res of api")
-
     return await res.json()
 }
 
