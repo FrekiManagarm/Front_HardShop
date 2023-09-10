@@ -12,7 +12,7 @@ export async function GET(request: Request, { params }: {params: {id: number}}) 
         },
     })
 
-    const data : CPU = await res.json()
+    const data = await res.json()
 
     return NextResponse.json(data, {
         status: 200

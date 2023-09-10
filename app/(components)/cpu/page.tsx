@@ -11,6 +11,8 @@ async function getCPUs() {
         cache: "no-store"
     })
 
+    console.log(res, 'res from route handlers')
+
     return await res.json()
 }
 
