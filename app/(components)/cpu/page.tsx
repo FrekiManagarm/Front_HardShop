@@ -16,18 +16,17 @@ async function getCPUs() {
         notFound()
     }
 
-    console.log(res.json(), 'res from route handlers')
-
     return await res.json()
 }
 
 export default async function CPUList() {
 
-    const cpus : CPU[] = await getCPUs()
+    const cpus = await getCPUs()
+    console.log(cpus)
 
     return (
         <>
-            <CPUPage cpus={cpus} />
+            {/* <CPUPage cpus={cpus} /> */}
         </>
     )
 }
