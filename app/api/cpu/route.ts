@@ -15,7 +15,6 @@ export async function GET() {
     const data : CPU[] = await res.json()
 
     return NextResponse.json(data, {
-
         status: 200
     })
 }
