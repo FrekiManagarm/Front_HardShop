@@ -4,7 +4,7 @@ import { CPU } from "@/types"
 import Image from "next/image"
 
 async function getCPU(id: number) {
-    const res = await fetch(`${process.env.LOCAL_API_URL}/api/cpu/${id}`, {
+    const res = await fetch(`${process.env.API_URL}/api/CPU/${id}`, {
         cache: "no-store",
         method: "GET",
     })
