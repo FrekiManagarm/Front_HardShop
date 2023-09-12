@@ -1,5 +1,6 @@
 import { Navbar } from "@/components";
 import CaseDetailsPage from "@/container/CasePage/CaseDetailsPage";
+import { Case } from "@/types";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -9,8 +10,8 @@ export const metadata : Metadata = {
 }
 
 async function getCase(id: number) {
-  try {
-    const res = await fetch(`http://localhost:3000/api/case/${id}`, {
+  // try {
+    const res = await fetch(`${process.env.API_URL}/api/Boitier/${id}`, {
       method: "GET",
       headers: {
         "Accept": "application/json",
@@ -18,15 +19,17 @@ async function getCase(id: number) {
       cache: "no-store"
     })
 
-    return await res.json()
-  } catch (error) {
-    console.log(error)
-  }
+    const data : Case = await res.json()
+
+    return data
+  // } catch (error) {
+    // console.log(error)
+  // }
 }
 
 export default async function CaseDetails({ params }: {params: any}) {
 
-  const boitier = await getCase(params.id)
+  const boitier : Case = await getCase(params.id)
 
   return (
     <>

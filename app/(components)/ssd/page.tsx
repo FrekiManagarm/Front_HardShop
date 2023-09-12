@@ -3,16 +3,21 @@ import { SSD } from "@/types"
 import { notFound } from "next/navigation"
 
 async function getSSDs() {
-    const res = await fetch(`${process.env.LOCAL_API_URL}/api/ram`, {
+    const res = await fetch(`${process.env.API_URL}/api/SSDs`, {
         method: "GET",
-        cache: "no-store"
+        cache: "no-store",
+        headers: {
+            "Accept": "application/json"
+        }
     })
 
     if (res.status == 404) {
         notFound()
     }
 
-    return await res.json()
+    const data : SSD[] = await res.json()
+
+    return data
 }
 
 export default async function SSDList() {

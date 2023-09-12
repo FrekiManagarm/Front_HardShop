@@ -2,12 +2,17 @@ import PSUDetailsPage from "@/container/PSUPage/PSUDetailsPage"
 import { PSU } from "@/types"
 
 async function getPSU(id: number) {
-    const res = await fetch(`${process.env.LOCAL_API_URL}/api/psu/${id}`, {
+    const res = await fetch(`${process.env.API_URL}/api/PSU/${id}`, {
         method: "GET",
-        cache: "no-store"
+        cache: "no-store",
+        headers: {
+            "Accept": "application/json"
+        }
     })
 
-    return res.json()
+    const data : PSU = await res.json()
+
+    return data
 } 
 
 export default async function PSUDetails({ params }: {params: { id: number }}) {

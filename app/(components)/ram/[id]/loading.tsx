@@ -1,5 +1,7 @@
 export default function LoadingRAM() {
   return (
-    <span className="loading loading-ring loading-lg"></span>
+    <>
+      <h1>Chargement ...</h1>
+    </>
   )
 }

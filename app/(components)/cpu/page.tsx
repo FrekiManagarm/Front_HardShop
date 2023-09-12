@@ -3,7 +3,7 @@ import { CPU } from "@/types"
 import { notFound } from "next/navigation"
 
 async function getCPUs() {
-    const res = await fetch(`${process.env.LOCAL_API_URL}/api/cpu`, {
+    const res = await fetch(`${process.env.API_URL}/api/CPUs`, {
         method: "GET",
         headers: {
             "Accept": "application/json",
@@ -15,7 +15,9 @@ async function getCPUs() {
         notFound()
     }
 
-    return await res.json()
+    const data : CPU[] = await res.json()
+
+    return data
 }
 
 export default async function CPUList() {

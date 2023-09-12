@@ -5,7 +5,7 @@ import { GPU } from "@/types";
 import { notFound } from "next/navigation";
 
 async function getGPUs() {
-    const res = await fetch(`${process.env.LOCAL_API_URL}/api/gpu`, {
+    const res = await fetch(`${process.env.API_URL}/api/GPUs`, {
         method: "GET",
         headers: {
             "Accept": "application/json",
@@ -17,7 +17,9 @@ async function getGPUs() {
         notFound()
     }
 
-    return await res.json()
+    const data : GPU[] = await res.json()
+
+    return data
 }
 
 export default async function GPUList() {

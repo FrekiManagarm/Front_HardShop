@@ -3,8 +3,12 @@ import CoolingDetailsPage from "@/container/CoolingPage/CoolingDetailsPage";
 import { Cooling } from "@/types";
 
 async function getCooling(id: number) {
-    const res = await fetch(`${process.env.LOCAL_API_URL}/api/cooling/${id}`, {
-        cache: "no-store"
+    const res = await fetch(`${process.env.API_URL}/api/Cooling/${id}`, {
+        method: "GET",
+        cache: "no-store",
+        headers: {
+            "Accept": "application/json"
+        }
     })
 
     return res.json()

@@ -4,16 +4,21 @@ import { HDD } from "@/types";
 import { notFound } from "next/navigation";
 
 async function getHDDs() {
-    const res = await fetch(`${process.env.LOCAL_API_URL}/api/hdd`, {
+    const res = await fetch(`${process.env.API_URL}/api/hdd`, {
         cache: "no-store",
-        method: "GET"
+        method: "GET",
+        headers: {
+            "Accept": "application/json"
+        }
     })
 
     if (res.status == 404) {
         notFound()
     }
 
-    return await res.json()
+    const data : HDD[] = await res.json()
+
+    return data
 }
 
 export default async function HDDList() {

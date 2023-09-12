@@ -2,12 +2,17 @@ import RAMDetailsPage from "@/container/RAMPage/RAMDetailsPage"
 import { RAM } from "@/types"
 
 async function getRAM(id: number) {
-    const res = await fetch(`${process.env.LOCAL_API_URL}/api/ram/${id}`, {
+    const res = await fetch(`${process.env.API_URL}/api/RAM/${id}`, {
         method: "GET",
         cache: "no-store",
+        headers: {
+            "Accept": "application/json"
+        }
     })
 
-    return res.json()
+    const data : RAM = await res.json()
+
+    return data
 }
 
 export default async function RAMDetails({ params } : { params: { id: number } }) {

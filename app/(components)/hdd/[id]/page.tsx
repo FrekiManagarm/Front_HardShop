@@ -1,13 +1,18 @@
-import { Navbar } from "@/components";
 import HDDDetailsPage from "@/container/HDDPage/HDDDetailsPage";
 import { HDD } from "@/types";
 
 async function getHDD(id: number) {
-    const res = await fetch(`${process.env.LOCAL_API_URL}/api/hdd/${id}`, {
+    const res = await fetch(`${process.env.API_URL}/api/HDD/${id}`, {
         cache: "no-store",
+        method: "GET",
+        headers: {
+            "Accept": "application/json"
+        }
     })
 
-    return res.json()
+    const data : HDD = await res.json()
+
+    return data
 }
 
 export default async function HDDDetails({ params }: {params: {id: number}}) {

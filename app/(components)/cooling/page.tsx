@@ -11,7 +11,7 @@ export const metadata : Metadata = {
 
 async function getCoolings() {
     
-        const res = await fetch(`${process.env.LOCAL_API_URL}/api/cooling`, {
+        const res = await fetch(`${process.env.API_URL}/api/Coolings`, {
             cache: "no-store",
             method: "GET",
             headers: {
@@ -23,7 +23,9 @@ async function getCoolings() {
             notFound()
         }
 
-        return await res.json()
+        const data : Cooling[] = await res.json()
+
+        return data
 
 }
 
