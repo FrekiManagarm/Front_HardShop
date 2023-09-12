@@ -2,10 +2,12 @@ import { HDD } from "@/types"
 import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
 
+export const runtime = "edge"
+
 export async function GET(request: Request, {params}: {params: {id: number}}) {
     const id = params.id
 
-    try {
+    
         const res = await fetch(`${process.env.API_URL}/api/HDD/${id}`, {
             method: "GET",
             headers: {
@@ -15,15 +17,9 @@ export async function GET(request: Request, {params}: {params: {id: number}}) {
 
         const data : HDD = await res.json()
 
-        return NextResponse.json(data, {
+        return NextResponse.json({data}, {
             status: 200
         })
-    } catch (error) {
-        return NextResponse.json({
-            message: "Error when fetching HDD",
-            error: error
-        })
-    }
 }
 
 export async function PUT(request: Request, { params }: {params: {id: number}}) {

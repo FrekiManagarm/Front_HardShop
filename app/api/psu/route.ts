@@ -2,6 +2,8 @@ import { PSU } from "@/types";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
+export const runtime = "edge"
+
 export async function GET() {
     const res = await fetch(`${process.env.API_URL}/api/PSUs`, {
         method: "GET",

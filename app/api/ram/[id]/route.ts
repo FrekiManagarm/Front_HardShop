@@ -2,6 +2,8 @@ import { RAM } from "@/types";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+export const runtime = "edge"
+
 export async function GET(request: Request, { params }: {params: { id: number }}) {
     const id = params.id
 

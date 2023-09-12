@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { cookies } from "next/headers";
 import { MotherBoard } from "@/types";
 
+export const runtime = "edge"
+
 export async function GET(request: Request, { params }: {params: {id: number}}) {
     const id = params.id
 
@@ -14,7 +16,7 @@ export async function GET(request: Request, { params }: {params: {id: number}}) 
 
     const data : MotherBoard = await res.json()
 
-    return NextResponse.json(data, {
+    return NextResponse.json({data}, {
         status: 200
     })
 }

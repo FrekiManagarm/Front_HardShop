@@ -2,6 +2,8 @@ import { RAM } from "@/types";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+export const runtime = "edge"
+
 export async function GET() {
     const res = await fetch(`${process.env.API_URL}/api/RAMs`, {
         method: "GET",

@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { SSD } from "@/types";
 import { cookies } from "next/headers";
 
+export const runtime = "edge"
+
 export async function GET() {
     const res = await fetch(`${process.env.API_URL}/api/SSDs`, {
         method: "GET",
@@ -9,8 +11,10 @@ export async function GET() {
             "Accept": "application/json",
         },
     })
-}
 
-export async function POST(request: Request) {
+    const data : SSD = await res.json()
 
+    return NextResponse.json({data}, {
+        status: 200
+    })
 }

@@ -2,6 +2,8 @@ import { cookies } from "next/headers";
 import { MotherBoard } from "@/types";
 import { NextResponse } from "next/server";
 
+export const runtime = "edge"
+
 export async function GET() {
     const res = await fetch(`${process.env.API_URL}/api/MotherBoards`, {
         method: "GET",
@@ -12,7 +14,7 @@ export async function GET() {
 
     const data : MotherBoard[] = await res.json()
 
-    return NextResponse.json(data, {
+    return NextResponse.json({data}, {
         status: 200
     })
 }
