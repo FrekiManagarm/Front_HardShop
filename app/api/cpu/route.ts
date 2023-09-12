@@ -1,6 +1,8 @@
 import { CPU } from "@/types";
 import { NextResponse } from "next/server";
 
+export const runtime = "edge"
+
 export async function GET() {
     try {
         const res = await fetch(`${process.env.API_URL}/api/CPUs`, {

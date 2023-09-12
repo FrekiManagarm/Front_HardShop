@@ -1,4 +1,3 @@
-import { Navbar } from "@/components"
 import CPUPage from "@/container/CPUPage/CPUPage"
 import { CPU } from "@/types"
 import { notFound } from "next/navigation"
@@ -21,12 +20,11 @@ async function getCPUs() {
 
 export default async function CPUList() {
 
-    const cpus = await getCPUs()
-    console.log(cpus)
+    const cpus : CPU[] = await getCPUs()
 
     return (
         <>
-            {/* <CPUPage cpus={cpus} /> */}
+            <CPUPage cpus={cpus} />
         </>
     )
 }
