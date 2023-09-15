@@ -4,24 +4,6 @@ import { NextResponse } from "next/server"
 
 export const runtime = "edge"
 
-export async function GET(request: Request, {params}: {params: {id: number}}) {
-    const id = params.id
-
-    
-        const res = await fetch(`${process.env.API_URL}/api/HDD/${id}`, {
-            method: "GET",
-            headers: {
-                "Accept": "application/json"
-            },
-        })
-
-        const data : HDD = await res.json()
-
-        return NextResponse.json({data}, {
-            status: 200
-        })
-}
-
 export async function PUT(request: Request, { params }: {params: {id: number}}) {
     const id = params.id
     const cookiesStore = cookies()

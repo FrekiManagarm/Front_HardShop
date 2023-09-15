@@ -4,23 +4,6 @@ import { cookies } from "next/headers";
 
 export const runtime = "edge"
 
-export async function GET(request: Request, {params}: {params: {id: number}}) {
-    const id = params.id
-
-    const res = await fetch(`${process.env.API_URL}/api/PSU`, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json"
-        },
-    })
-
-    const data : PSU = await res.json()
-
-    return NextResponse.json(data, {
-        status: 200
-    })
-}
-
 export async function PUT(request: Request, {params}: {params: {id: number}}) {
     const id = params.id
     const cookieStore = cookies()

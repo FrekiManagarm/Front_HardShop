@@ -1,21 +1,23 @@
-import { CPU } from "@/types";
 import { NextResponse } from "next/server";
-
-export const runtime = "edge"
+import { cookies } from "next/headers";
 
 export async function POST(request: Request) {
-    const res = await fetch(`${process.env.API_URL}/api/CPU`, {
+
+    const cookieStore = cookies()
+
+    const res = await fetch(`${process.env.API_URL}/api/login`, {
         method: "POST",
         headers: {
-            "Accept": "application/json",
             "Content-Type": "application/json",
         },
         body: JSON.stringify(request.body)
     })
 
-    const data : CPU = await res.json()
+    const data = await res.json()
 
-    return NextResponse.json(data, {
+    cookieStore.set('token', data)
+
+    return NextResponse.json({ data }, {
         status: 201
     })
 }

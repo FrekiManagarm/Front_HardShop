@@ -4,22 +4,6 @@ import { cookies } from 'next/headers';
 
 export const runtime = "edge"
 
-export async function GET(request: Request) {
-        const res = await fetch(`${process.env.API_URL}/api/Boitiers`, {
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            method: "GET",
-        });
-
-        const data: Case[] = await res.json()
-
-        return NextResponse.json({data}, {
-            status: 200
-        })
-}
-
 export async function POST(request: Request) {
 
     const cookieStore = cookies()
